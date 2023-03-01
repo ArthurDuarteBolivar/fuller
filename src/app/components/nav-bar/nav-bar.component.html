@@ -1,0 +1,43 @@
+<nav  class=" text-light">
+  <ul class="d-flex justify-content-center align-items-center fs-5 align-self-stretch mx-5 fw-semibold">
+
+    <li class="nav-item px-2">
+      <img [routerLink]="['']" src="/assets/imgs/logo-bg.png" alt="logo">
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link" [routerLink]="['sorteios']">SORTEIOS</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link" [routerLink]="['ganhadores']">GANHADORES</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link" [routerLink]="['pedidos']">MEUS NÚMEROS</a>
+    </li>
+    <li class="nav-item px-2">
+      <a class="nav-link" [routerLink]="['terms']">TERMOS</a>
+    </li>
+  </ul>
+
+
+</nav>
+
+<div class="option">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <a class="nav-link" [routerLink]="['sorteios']">Sorteios</a>
+    </button>
+    <button mat-menu-item>
+      <a class="nav-link" [routerLink]="['ganhadores']">Ganhadores</a>
+    </button>
+    <button mat-menu-item>
+      <a class="nav-link" [routerLink]="['pedidos']">Meus Números</a>
+    </button>
+    <button mat-menu-item>
+      <a class="nav-link" [routerLink]="['terms']">Termos</a>
+    </button>
+  </mat-menu>
+</div>
+

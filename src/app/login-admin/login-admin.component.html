@@ -1,0 +1,26 @@
+<div class="login" *ngIf="estado == false">
+
+  <form class="d-flex flex-column text-center m-auto w-50" [formGroup]="loginForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Login</mat-label>
+      <input matInput formControlName="login" required>
+      <mat-error *ngIf="loginForm.invalid">Login Invalido</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Senha</mat-label>
+      <input matInput formControlName="senha" required>
+      <mat-error *ngIf="loginForm.invalid">Senha Invalida</mat-error>
+    </mat-form-field>
+    <button  mat-raised-button (click)="conferir()">conferir</button>
+    </form>
+
+
+</div>
+
+
+
+<div *ngIf="estado" class="d-flex justify-content-around">
+  <a [routerLink]="['adicionarSorteio']">Adicionar Sorteio</a>
+  <a [routerLink]="['buscarRifas']">Buscar Rifas</a>
+  <a [routerLink]="['adicionarGanhador']">adicionarGanhador</a>
+</div>

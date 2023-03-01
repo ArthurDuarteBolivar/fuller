@@ -1,0 +1,89 @@
+<div *ngIf="carregando == true" class="d-flex justify-content-center align-items-center w-100 h-75">
+  <mat-spinner></mat-spinner>
+</div>
+<!-- <canvas class="w-100 h-100 position-absolute" id="canvas"></canvas> -->
+  <div class="checkout" *ngIf="validacaoStepper == 1">
+    <h1><mat-icon class="mat-18">add_shopping_cart</mat-icon> CHECKOUT</h1>
+    <span>Para continuar com sua compra preencha os campos abaixo.</span>
+    <form class="d-flex flex-column text-center m-auto" [formGroup]="firstFormGroup">
+      <mat-form-field appearance="fill">
+        <mat-label>Seu Nome</mat-label>
+        <input matInput formControlName="nome" placeholder="Primeiro nome Segundo Nome" required>
+        <mat-error *ngIf="firstFormGroup.invalid">Insira o nome corretamente</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Seu Telefone</mat-label>
+        <input matInput formControlName="telefone" placeholder="(00) 0 0000-0000" appTelMask required>
+        <mat-error *ngIf="firstFormGroup.invalid">Insira o numero de telefone corretamente</mat-error>
+      </mat-form-field>
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Confirme seu telefone</mat-label>
+        <input matInput formControlName="confirmTelefone" placeholder="(00) 0 0000-0000" appTelMask required>
+      </mat-form-field> -->
+      <mat-form-field appearance="fill">
+        <mat-label>Seu email</mat-label>
+        <input matInput formControlName="email" placeholder="pat@exemplo.com" required>
+        <mat-error *ngIf="firstFormGroup.invalid">Insira o email corretamente</mat-error>
+      </mat-form-field>
+      <span class="text-center"><mat-checkbox checked (click)="teste()"></mat-checkbox>Ao clicar em prosseguir, você está de acordo com os termos do sorteio.</span>
+      <div>
+        <button mat-raised-button [disabled]="checked == false" (click)="validacao()">Prosseguir</button>
+      </div>
+    </form>
+  </div>
+
+    <section *ngIf="validacaoStepper == 2 && carregando == false" class="finish">
+      <div class="container">
+        <div class="bg-dark text-light d-flex flex-column rounded text-start w-100 my-3">
+          <h2>RESERVA REALIZADA!</h2>
+          <span>Garanta seu número efetuando o pagamento em até {{dataExpiracao | date: "short"}}</span>
+        </div>
+        <div class="d-flex produtoImagem my-5">
+          <img class="imagemDoProduto" [src]="sorteioAtual.imagem" [alt]="sorteioAtual.titulo">
+          <div class="produto">
+            <h2>{{titulo}}</h2>
+            <span class="fs-6 text">Quantidade: {{counter}}</span>
+            <span class="fs-6 text">Cotas: Gerando</span>
+            <span class="fs-6 text">Valor unitário das cotas: {{valor / counter | currency: "BRL"}}</span>
+            <span class="fs-6 text"> Total: {{valor | currency: "BRL"}}</span>
+          </div>
+        </div>
+        <p>Não saio do site até que o pagamento seja aprovado</p>
+        <h1 class="opcoes w-100 text-start">Para pagar, escolha uma destas opções:</h1>
+        <span class="text-start w-100">Código QR</span>
+        <img class="w-50 h-50 my-5" [src]="'data:image/png;base64,' + qrCodeImage" alt="pix">
+        <span class="text-start w-100">Código de pagamento</span>
+        <div class="d-flex justify-center border border-white rounded w-100 p-3">
+          <h1 class="user-select-all codigo text-center text-truncate m-0">{{codigoPix | truncate: 100}}</h1>
+          <mat-icon class="m-0" (click)="copyText()">file_copy</mat-icon>
+        </div>
+        <div class="como-pagar">
+          <h1>Como pagar?</h1>
+          <div>
+            <span class="circle">1</span>
+            <span class="text">Entre no app ou site do seu banco e escolha a opção de pagamento via Pix.</span>
+          </div>
+          <div>
+            <span class="circle">2</span>
+            <span class="text">Escaneie o código QR ou copie e cole o código de pagamento.</span>
+          </div>
+          <div>
+            <span class="circle">3</span>
+            <span class="text">Pronto! O pagamento será creditado na hora e você receberá um e-mail de confirmação.</span>
+          </div>
+          <p>O Pix tem um limite diário de transferências. Para mais informações, por favor, consulte seu banco.</p>
+        </div>
+        <div class="my-3 flex justify-center">
+          <img class=" seguro" src="/assets/imgs/pagamentoSeguro.png" alt="Compra segura">
+        </div>
+      </div>
+    </section>
+    <div *ngIf="finish == true" class="border rounded border-success d-flex flex-column bg-success bg-gradient p-2">
+      <p class="text-success-emphasis fw-semibold">Seu pedido foi realizado com sucesso</p>
+      <!-- <p>Em breve você reberá um e-mail no endereço  com todos os detalhes do pedido.</p> -->
+      <h1 class="p-3 bg-success text-light"><mat-icon>check_circle</mat-icon> Pagamento Aprovado</h1>
+    </div>
+
+
+    <div>
+    </div>

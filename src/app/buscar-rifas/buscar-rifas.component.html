@@ -1,0 +1,37 @@
+<section>
+  <h1 class="w-100 text-center text-white">Buscar Rifas</h1>
+  <form class="d-flex flex-column text-center m-auto w-50" [formGroup]="buscarForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Numero sorteado (com zero antes)</mat-label>
+      <input matInput formControlName="numero" required>
+      <mat-error *ngIf="buscarForm.invalid">required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Id do sorteio</mat-label>
+      <input matInput formControlName="sorteio" required>
+      <mat-error *ngIf="buscarForm.invalid">required</mat-error>
+    </mat-form-field>
+    <button mat-raised-button (click)="buscar()">conferir</button>
+  </form>
+  <mat-card class="w-50 mx-auto my-5">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>id: {{rifa.id}}</mat-card-title>
+        <mat-card-subtitle>pessoaID: {{rifa.pessoaID}}</mat-card-subtitle>
+        <mat-card-subtitle>sorteioID: {{rifa.sorteioID}}</mat-card-subtitle>
+        <mat-card-subtitle>data de compra: {{rifa.dataCompra | date: "short"}}</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      numero: {{rifa.numeroRifas}}
+    </mat-card-content>
+  </mat-card>
+  <h1 class="w-100 text-center text-white">Deletar Rifas</h1>
+  <form class="d-flex flex-column text-center m-auto w-50">
+    <mat-form-field appearance="fill">
+      <mat-label>Id do Sorteio</mat-label>
+      <input #id matInput required>
+    </mat-form-field>
+    <button mat-raised-button (click)="deletar(id.value)">deletar</button>
+  </form>
+</section>

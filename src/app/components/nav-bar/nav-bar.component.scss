@@ -1,0 +1,31 @@
+.nav-item{
+  list-style: none;
+}
+nav{
+  background-color: #b21a1a;
+  opacity: 1;
+  position: relative;
+  img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+.option{
+  color: white;
+  opacity: 0;
+}
+
+
+@media (max-width: 575px){
+  nav{
+    opacity: 0;
+    position: absolute;
+  }
+  .option{
+    opacity: 1;
+  }
+}
+
+

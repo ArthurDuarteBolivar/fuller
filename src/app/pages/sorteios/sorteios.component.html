@@ -1,0 +1,16 @@
+<section>
+  <div class="title">
+    <h1><mat-icon class="mat-18">bookmark</mat-icon>GRANDES PRÊMIOS</h1>
+    <p>Seu sonho bem pertinho de você!</p>
+  </div>
+  <div class="sorteios">
+    <div  class="container" *ngFor="let item of sorteios.reverse()| slice:0:9" [routerLink]="['/sorteios',item.titulo ]">
+      <img [src]="item.imagem" alt="">
+      <div>
+      <h1 [ngClass]="{'disponivel': item.estado == 'disponivel', 'encerrado': item.estado == 'encerrado', 'esgotado': item.estado == 'esgotado'}">{{item.estado}}</h1>
+      <h1>{{item.titulo}}</h1>
+      <h1>{{item.data | date: 'dd/MM/yyyy'}}</h1>
+      </div>
+    </div>
+  </div>
+</section>

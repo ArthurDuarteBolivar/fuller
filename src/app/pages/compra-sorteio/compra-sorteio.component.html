@@ -1,0 +1,58 @@
+
+<section>
+  <img class="sorteioImagem" [src]="sorteio.imagem" alt="">
+  <div class="soteios">
+    <h1>{{sorteio.titulo}}</h1>
+    <span class="valor m-2 w-100 text-center">{{sorteio.valor | currency:'BRL'}}</span>
+      <span class="data m-2">Data do sorteio:             {{sorteio.data |date : 'd, MMMM h:mm'}}</span>
+    <div *ngIf="sorteio.estado == 'encerrado'">
+      <h1>Ganhador(es) do sorteio:</h1>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <img src="/assets/imgs/trophy-svgrepo-com.svg" alt="tropy">
+          <mat-card-title-group>
+            <mat-card-title>{{ganhador.nome}}</mat-card-title>
+            <mat-card-subtitle>Sorteio: {{ganhador.sorteios}}</mat-card-subtitle>
+            <mat-card-subtitle>Data: {{ganhador.data | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
+            <mat-card-subtitle>Cota de número: {{ganhador.numero_sorteado}}</mat-card-subtitle>
+            <span class="status">Parabéns!</span>
+          </mat-card-title-group>
+        </mat-card-header>
+      </mat-card>
+    </div>
+    <div *ngIf="sorteio.estado == 'disponivel'">
+      <h1 class="p-0 m-0">Promoção</h1>
+      <span class="fw-lighter p-bottom-3">Compre mais barato</span>
+      <div class="desconto text-center border border-white p-2 rounded m-2">
+        <button class="btn btn-outline-success m-2" (click)="counter = 50" (click)="valor = (sorteio.valor *  50) - (sorteio.valor* 50) * 0.05">50 cotas - R${{(sorteio.valor *  50) - (sorteio.valor* 50) * 0.05}}</button>
+        <button class="btn btn-outline-success m-2" (click)="counter = 150" (click)="valor = (sorteio.valor *  150) - (sorteio.valor* 150) * 0.05">150 cotas - R${{(sorteio.valor *  150) - (sorteio.valor* 150) * 0.05}}</button>
+        <button class="btn btn-outline-success m-2" (click)="counter = 100" (click)="valor = (sorteio.valor *  100) - (sorteio.valor* 100) * 0.05">100 cotas - R${{(sorteio.valor *  100) - (sorteio.valor* 100) * 0.05}}</button>
+        <button class="btn btn-outline-success m-2" (click)="counter = 200" (click)="valor = (sorteio.valor *  200) - (sorteio.valor* 200) * 0.05">200 cotas - R${{(sorteio.valor *  200) - (sorteio.valor* 200) * 0.05}}</button>
+      </div>
+      <h1 class="m-0">COMPRA AUTOMÁTICA</h1>
+      <span class="fs-6 my-4">O site escolhe números aleatórios para você.</span>
+      <div class="d-flex flex-column text-center border rounded">
+        <span class="fs-5 my-2">{{valor | currency:"BRL"}}</span>
+        <br>
+        <div *ngIf="desconto">
+          <span>Deconto de 5%</span>
+        </div>
+        <br>
+        <span>Pré selecione uma quantidade</span>
+        <div class="border rounded grid text-center m-3 p-1 ">
+          <button class="btn btn-outline-success w-35 m-2" (click)="contador(1)">+01</button>
+          <button class="btn btn-outline-success w-35 m-2" (click)="contador(5)">+05</button>
+          <button class="btn btn-outline-success w-35 m-2" (click)="contador(10)">+10</button>
+          <button class="btn btn-outline-success w-35 m-2" (click)="contador(15)">+15</button>
+        </div>
+        <div class="d-flex align-items-center">
+          <button (click)="diminui()" class="btn btn-outline-danger m-2">-</button>
+          <input disabled=""  type="number" class="form-control text-center"  [(ngModel)]="counter">
+          <button (click)="contador(1)" class="btn btn-outline-success m-2">+</button>
+        </div>
+        <span>Número máximo de compra: {{sorteio.count_rifas - numerosRestantesTotal}}</span>
+        <button (click)="comprar()" class="btn btn-success m-2 d-flex justify-content-center">Comprar<mat-icon>add_shopping_cart</mat-icon></button>
+      </div>
+    </div>
+  </div>
+</section>

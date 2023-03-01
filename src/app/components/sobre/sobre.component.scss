@@ -1,0 +1,36 @@
+.text{
+  font-size: 10rem;
+  position: absolute;
+}
+
+.d-flex{
+  margin-top: 400px;
+  background-color: #b21a1a;
+  color: white;
+}
+
+
+
+.item{
+  flex: 1;
+  flex-basis: 0;
+  margin: 0.1rem;
+}
+
+@media (max-width: 600px) {
+  .d-flex{
+    flex-direction: column;
+  }
+  .item{
+    display: flex;
+    margin: 2rem 0;
+  }
+  p{
+    width: 100%;
+  }
+}
+
+.opacity-50{
+  color: white;
+}
+

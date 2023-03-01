@@ -1,0 +1,26 @@
+
+<section>
+  <form class="d-flex flex-column text-center m-auto w-75" [formGroup]="GanhadorForm">
+    <mat-form-field appearance="fill">
+      <mat-label>nome</mat-label>
+      <input matInput formControlName="nome" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>sorteios</mat-label>
+      <input matInput formControlName="sorteios" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose an option</mat-label>
+      <mat-select>
+        <mat-option ([ngModel)]="tituloSorteio" value="option1" *ngFor="let item of sorteios">{{item.titulo}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button (click)="testes()">mostrar</button>
+    <mat-form-field appearance="fill">
+      <mat-label>numero_sorteado</mat-label>
+      <input matInput formControlName="numero_sorteado" required>
+    </mat-form-field>>
+    <button mat-raised-button (click)="adicionar()">Adcionar</button>
+    </form>
+
+</section>

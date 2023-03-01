@@ -1,0 +1,72 @@
+
+<section class="w-100 h-100">
+  <form class="d-flex flex-column text-center m-auto w-75" [formGroup]="sorteioForm">
+    <mat-form-field appearance="fill">
+      <mat-label>imagem</mat-label>
+      <input matInput formControlName="imagem" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>titulo</mat-label>
+      <input matInput formControlName="titulo" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>descricao</mat-label>
+      <input matInput formControlName="descricao" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>data (coloque 3 horas a mais)</mat-label>
+      <input type="datetime-local" matInput formControlName="data" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>valor</mat-label>
+      <input matInput formControlName="valor" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>count_rifas</mat-label>
+      <input matInput formControlName="count_rifas" required>
+    </mat-form-field>
+    <button mat-raised-button (click)="adicionar()">Adcionar</button>
+    </form>
+
+
+    <table class="table bg-white my-5">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">imagem</th>
+          <th scope="col">titulo</th>
+          <th scope="col">estado</th>
+          <th scope="col">descricao</th>
+          <th scope="col">data</th>
+          <th scope="col">valor</th>
+          <th scope="col">count_rifas</th>
+          <th scope="col">deletar</th>
+          <th scope="col">editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of sorteios">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.imagem | truncate: 100}}</td>
+          <td>{{item.titulo}}</td>
+          <td>{{item.estado}}</td>
+          <td>{{item.descricao}}</td>
+          <td>{{item.data | date: 'short'}}</td>
+          <td>{{item.valor | currency: "BRL"}}</td>
+          <td>{{item.count_rifas}}</td>
+          <td><button mat-raised-button color="warn" (click)="deletar(item.id!)">deletar</button></td>
+          <td><button mat-raised-button color="primary"routerLink="/fuller-398567-3843833/adicionarSorteio">editar</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+</section>
+<!--
+ <h1>Adicionar ganhador</h1>
+<span>Numero Sorteado</span>
+<input type="text">
+<span>Nome da pessoa sorteada</span>
+<input type="text">
+<span>Nome do sorteio (completo)</span>
+<input type="text">
+<button (click)="adicionarGanhador()">Adicionar</button> -->

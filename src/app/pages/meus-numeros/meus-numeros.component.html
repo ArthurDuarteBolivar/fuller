@@ -1,0 +1,43 @@
+<section>
+  <div class="p-3">
+    <h1>Buscar Pedidos</h1>
+    <p>Informe o número de telefone para consultar informações sobre os seus pedidos.</p>
+  </div>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Telefone</mat-label>
+      <input type="tel" matInput [formControl]="form" [errorStateMatcher]="matcher" placeholder="(00) 0 0000-0000"
+        appTelMask>
+      <mat-error *ngIf="form.hasError('Telefone') && !form.hasError('required')">
+        Please enter a valid Telefone address
+      </mat-error>
+      <mat-error *ngIf="form.hasError('required')">
+        Telefone is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="buscar()">Buscar</button>
+  </form>
+
+</section>
+<div class="container-rifas my-3">
+  <mat-card class="example-card" *ngFor="let item of newRifas.reverse()">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{item.sorteioID}}</mat-card-title>
+        <mat-card-subtitle>{{item.dataCompra | date: 'short'}}</mat-card-subtitle>
+        <mat-card-subtitle>Quantidade: {{item.numeroRifas.split(',').length}}</mat-card-subtitle>
+        <div *ngFor="let sorteio of sorteios.reverse()">
+          <img *ngIf="sorteio.titulo == item.sorteioID.toString()" mat-card-sm-image [src]="sorteio.imagem" >
+        </div>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content class="text-break">
+      <div *ngFor="let sorteio of sorteios.reverse()">
+        <mat-card-subtitle  *ngIf="sorteio.titulo == item.sorteioID.toString()">Valor unitário das cotas: {{sorteio.valor | currency: "BRL"}}</mat-card-subtitle>
+        <mat-card-subtitle class="text-black" *ngIf="sorteio.titulo == item.sorteioID.toString() && item.numeroRifas.split(',').length < 50">Total: {{sorteio.valor * item.numeroRifas.split(',').length | currency: "BRL"}}</mat-card-subtitle>
+        <mat-card-subtitle class="text-black" *ngIf="sorteio.titulo == item.sorteioID.toString() && item.numeroRifas.split(',').length > 50">Total: {{((sorteio.valor) -(sorteio.valor * 0.05))  * item.numeroRifas.split(',').length | currency: "BRL"}}</mat-card-subtitle>
+      </div>
+      {{item.numeroRifas | truncate: 255}}
+    </mat-card-content>
+  </mat-card>
+</div>

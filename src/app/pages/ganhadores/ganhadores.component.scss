@@ -1,0 +1,35 @@
+section{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto min-content;
+  width: 80%;
+  margin: auto;
+  grid-gap: 1rem;
+}
+
+img{
+  width:90px;
+  height: 90px;
+  margin: 0 1rem;
+}
+.status{
+  color: green;
+}
+
+div{
+  color: white;
+  width: 80%;
+  margin: 2rem auto;
+}
+
+
+@media (max-width: 798px) {
+  section{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:  auto min-content;
+    width: 80%;
+    margin: auto;
+    grid-gap: 1rem;
+  }
+}
